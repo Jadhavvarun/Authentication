@@ -19,9 +19,9 @@
           <li class="hover:text-yellow-1 duration-400"><a routerLink="/about" routerLinkActive="active">About Us</a></li>
           <li class="hover:text-yellow-1 duration-400">Solutions</li>
           <li class="hover:text-yellow-1 duration-400">Contact Us</li>
-          <li class="hover:text-yellow-1 duration-400">Sign Up</li>
+          <li class="hover:text-yellow-1 duration-400"><a routerLink="/register" routerLinkActive="active">Sign Up</a></li>
         </ul>
-        <button class="bg-yellow-1 py-2 px-6 text-black rounded-lg">Log in</button>
+        <a routerLink="/login" routerLinkActive="active"><button class="bg-yellow-1 py-2 px-6 text-black rounded-lg">Log in</button></a>
       </div>
     </div>
     <div class="md:hidden" *ngIf="showMenu">
