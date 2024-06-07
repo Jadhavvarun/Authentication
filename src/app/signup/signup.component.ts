@@ -24,10 +24,12 @@ export class SignupComponent {
     this.authService.signup(this.email, this.username, this.password)
       .subscribe({
         next: () => {
-          this.router.navigateByUrl('/login'); // Redirect on successful signup
+          this.router.navigateByUrl('/login');
+          window.alert("User Created Sccessfull");
         },
         error: (err) => {
-          // Handle signup errors (if present)
+          console.error('Signup failed', err);
+          window.alert(err);
         }
       });
   }

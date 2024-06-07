@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
-import { ToastService } from 'angular-toastify';
 
 @Component({
   selector: 'app-login',
@@ -17,19 +16,20 @@ export class LoginComponent {
 
   constructor(
     private authService: AuthService,
-    private router: Router,
-    private toastService: ToastService
+    private router: Router
   ) {}
 
   onSubmit() {
     if (this.email && this.password) {
       this.authService.login(this.email, this.password).subscribe({
         next: () => {
-          this.router.navigateByUrl('/'); // Redirect on successful login
-          this.toastService.success('Login successful!');
+          this.router.navigateByUrl('/'); 
+          console.log(this.email)
+          window.alert("Login Successfull...");
         },
         error: (err) => {
-          console.error('Login failed', err); // Handle login errors (if present)
+          console.error('Login failed', err); 
+          window.alert("Login Unsuccessfull...")
         }
       });
     }
