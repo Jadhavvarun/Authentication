@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
-
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -11,5 +11,5 @@ import { FooterComponent } from './footer/footer.component';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'todo-app';
+  http = inject(HttpClient);
 }

@@ -1,26 +1,26 @@
-import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
-import { NgForm, FormsModule } from '@angular/forms';
+import { Component, inject } from '@angular/core';
+import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, FormsModule],
+  imports: [FormsModule, ReactiveFormsModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  name: string = '';
-  email: string = '';
-  password: string = '';
+  fb = inject(FormBuilder);
+  http = inject(HttpClient);
+  router = inject(Router);
 
-  onSubmit(form: NgForm) {
-    // Handle form submission logic here
-    console.log('Name:', form.value.name);
-    console.log('Email:', form.value.email);
-    console.log('Password:', form.value.password);
+  form = this.fb.nonNullable.group({
+    email: ['', Validators.required],
+    password: ['', Validators.required],
+  });
 
-    // Reset the form after submission
-    form.resetForm();
+  onSubmit(): void {
+    console.log('login')
   }
 }
