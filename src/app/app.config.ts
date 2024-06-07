@@ -12,7 +12,7 @@ const firebaseConfig = {
   storageBucket: "angular-firebase-auth-f4ed0.appspot.com",
   messagingSenderId: "843020352072",
   appId: "1:843020352072:web:e1cd282deb72e5669af67d"
-}
+};
 
 export const appConfig: ApplicationConfig = {
   providers: [
