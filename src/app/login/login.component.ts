@@ -1,26 +1,37 @@
-import { Component, inject } from '@angular/core';
-import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { AuthService } from '../auth.service';
+import { ToastService } from 'angular-toastify';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule],
+  imports: [FormsModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  fb = inject(FormBuilder);
-  http = inject(HttpClient);
-  router = inject(Router);
+  email: string = '';
+  password: string = '';
 
-  form = this.fb.nonNullable.group({
-    email: ['', Validators.required],
-    password: ['', Validators.required],
-  });
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private toastService: ToastService
+  ) {}
 
-  onSubmit(): void {
-    console.log('login')
+  onSubmit() {
+    if (this.email && this.password) {
+      this.authService.login(this.email, this.password).subscribe({
+        next: () => {
+          this.router.navigateByUrl('/'); // Redirect on successful login
+          this.toastService.success('Login successful!');
+        },
+        error: (err) => {
+          console.error('Login failed', err); // Handle login errors (if present)
+        }
+      });
+    }
   }
 }

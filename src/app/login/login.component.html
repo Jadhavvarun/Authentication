@@ -1,19 +1,19 @@
 <div>
   <div class="h-auto px-10 py-20 bg-blue-1">
     <div>
-      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <form (ngSubmit)="onSubmit()">
         <div class="flex flex-col gap-4">
           <div class="flex flex-col">
             <label for="email" class="text-white">Email</label>
             <input id="email" type="email" placeholder="example@email.com"
               class="p-2 bg-transparent text-white border border-blue-2 outline-none rounded-md"
-              formControlName="email" required>
+              [(ngModel)]="email" name="email" required>
           </div>
           <div class="flex flex-col">
             <label for="password" class="text-white">Password</label>
             <input id="password" type="password" placeholder="Enter Password"
               class="p-2 bg-transparent text-white border border-blue-2 outline-none rounded-md"
-              formControlName="password" required>
+              [(ngModel)]="password" name="password" required>
           </div>
           <div>
             <button type="submit" class="bg-yellow-1 px-6 py-2 mt-4 rounded-lg font-semibold text-base">
